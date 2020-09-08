@@ -22,6 +22,10 @@ function TodoList() {
         dispatch({type: "toggle", data: id});
     }
 
+    function clearAllCompleted(){
+        dispatch({type: "remove completed"});
+    }
+
     return (
         <StyledList>
             {state ? 
@@ -29,6 +33,7 @@ function TodoList() {
             :
             <p>Please enter a todo item.</p>
             }
+            <button onClick={clearAllCompleted}>Clear all completed</button>
             <TodoForm onSubmit={submitForm} />
         </StyledList>
     );

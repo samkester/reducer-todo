@@ -9,7 +9,6 @@ function reducer(state, action){
 
             // push new item into state
             return [...state, action.data];
-        case "remove":
         case "toggle":
             // data: the ID of the object to switch states
             return state.map(item => // create a new array composed of one item for each item in the old array:
@@ -19,6 +18,9 @@ function reducer(state, action){
                     }
                     else return item; // otherwise just return it as-is
                 });
+        case "remove completed":
+            // data: none
+            return state.filter(item => !item.completed);
         default: return state; 
     }
 }
