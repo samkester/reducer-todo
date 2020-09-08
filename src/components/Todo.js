@@ -10,9 +10,13 @@ const StyledTodo = styled.div`
     }
 `;
 
-function Todo({todo}) {
+function Todo({todo, onClick}) {
+    function clickHandler(){
+        onClick(todo.id);
+    };
+
     return (
-        <StyledTodo>
+        <StyledTodo onClick={clickHandler}>
             <p className={todo.completed ? "completed" : ""}>{todo.item}</p>
         </StyledTodo>
     );
