@@ -6,9 +6,27 @@ import Todo from "./Todo";
 import TodoForm from "./TodoForm";
 
 const StyledList = styled.div`
-    color: blue; background-color: gold; border: 1px solid blue;
-    display: flex; flex-direction: column; align-items: center;
-    width: 80%; padding: 5%;
+    color: ${props => props.theme.color.main};
+    background-color: ${props => props.theme.background.main};
+    ${props => props.theme.objectSizing}
+    ${props => props.theme.flexContainer}
+    ${props => props.theme.roundBorders}
+
+    font-weight: bold;
+
+    .message{
+        ${props => props.theme.objectSizing}
+        ${props => props.theme.roundBorders}
+    }
+
+    .clearButton{
+        color: ${props => props.theme.color.form};
+        background-color: ${props => props.theme.background.form};
+        ${props => props.theme.objectSizing}
+        ${props => props.theme.roundBorders}
+
+        font-size: 2.4rem;
+    }
 `;
 
 function TodoList() {
@@ -29,11 +47,14 @@ function TodoList() {
     return (
         <StyledList>
             {state ? 
-            state.map(item => <Todo key={item.id} todo={item} onClick={toggleItem} />)
+                state.length > 0 ?
+                state.map(item => <Todo key={item.id} todo={item} onClick={toggleItem} />)
+                :
+                <p className="message">Please enter a todo item.</p>
             :
-            <p>Please enter a todo item.</p>
+            <p className="message">Loading, please wait.</p>
             }
-            <button onClick={clearAllCompleted}>Clear all completed</button>
+            <button className="clearButton" onClick={clearAllCompleted}>Clear all completed</button>
             <TodoForm onSubmit={submitForm} />
         </StyledList>
     );

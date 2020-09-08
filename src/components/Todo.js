@@ -2,11 +2,18 @@ import React from "react";
 import styled from "styled-components";
 
 const StyledTodo = styled.div`
-    color: red; border: 1px purple solid;
-    width: 80%; padding: 5%;
+    ${props => props.theme.objectSizing}
+    ${props => props.theme.roundBorders}
+    ${props => props.theme.flexContainer}
+    color: ${props => props.theme.color.item};
+    background-color: ${props => props.theme.background.item};
 
-    .completed{
-        color: green;
+
+    &.completed{
+        color: ${props => props.theme.color.itemCompleted};
+        background-color: ${props => props.theme.background.itemCompleted};
+
+        font-weight: normal;
     }
 `;
 
@@ -16,8 +23,8 @@ function Todo({todo, onClick}) {
     };
 
     return (
-        <StyledTodo onClick={clickHandler}>
-            <p className={todo.completed ? "completed" : ""}>{todo.item}</p>
+        <StyledTodo onClick={clickHandler} className={todo.completed ? "completed" : ""}>
+            <p>{todo.item}</p>
         </StyledTodo>
     );
 }

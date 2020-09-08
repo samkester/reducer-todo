@@ -3,11 +3,9 @@ import styled from "styled-components";
 import TodoList from "./components/TodoList";
 
 const StyledApp = styled.div`
-  width: 100%;
-  min-height: 100vh;
-  background-color: blanchedalmond;
-
-  display: flex; justify-content: center;
+  ${props => props.theme.containerSizing}
+  ${props => props.theme.flexContainer}
+  background-color: ${props => props.theme.background.container};
 `;
 
 function App() {
