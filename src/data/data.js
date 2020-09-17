@@ -1,7 +1,7 @@
 const data = {
     initialState: [
         {
-            item: "do the thing",
+            item: "do a thing",
             completed: false,
             id: 123456789,
         },
